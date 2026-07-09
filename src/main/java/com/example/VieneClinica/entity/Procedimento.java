@@ -1,6 +1,6 @@
 package com.example.VieneClinica.entity;
 
-import com.example.VieneClinica.enums.CategoriasAtendimento;
+import com.example.VieneClinica.enums.CategoriaAtendimento;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -43,7 +43,7 @@ public class Procedimento {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private CategoriasAtendimento categoriasAtendimento;
+    private CategoriaAtendimento categoriaAtendimento;
 
     @CreationTimestamp
     private OffsetDateTime createdAt;

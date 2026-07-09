@@ -1,6 +1,6 @@
 package com.example.VieneClinica.enums;
 
-public enum CategoriasAtendimento {
+public enum CategoriaAtendimento {
     HARMONIZACAO_FACIAL,
     ENDODONTIA,
     ORTODONTIA,

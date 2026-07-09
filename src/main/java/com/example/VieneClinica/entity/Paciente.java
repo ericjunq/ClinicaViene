@@ -24,12 +24,10 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @NotBlank
+
     @Column(nullable = false, length = 120)
     private String nomeCompleto;
 
-    @NotBlank
-    @Size(min = 11, max = 11)
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
@@ -38,13 +36,11 @@ public class Paciente {
     @Column(nullable = false, length = 11)
     private String telefone;
 
-    @NotBlank
+
     @Email
     @Column(nullable = false)
     private String email;
 
-    @NotBlank
-    @Column(nullable = false, length = 150)
     @Size(max = 150)
     private String endereco;
 
