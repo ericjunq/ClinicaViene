@@ -1,4 +1,4 @@
-package com.example.VieneClinica.entity.enums;
+package com.example.VieneClinica.enums;
 
 public enum StatusPagamento {
     PENDENTE,

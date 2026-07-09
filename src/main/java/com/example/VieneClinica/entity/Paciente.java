@@ -22,7 +22,7 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Column(nullable = false, length = 120)

@@ -1,7 +1,7 @@
 package com.example.VieneClinica.entity;
 
-import com.example.VieneClinica.entity.enums.FormaPagamento;
-import com.example.VieneClinica.entity.enums.StatusPagamento;
+import com.example.VieneClinica.enums.FormaPagamento;
+import com.example.VieneClinica.enums.StatusPagamento;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "procedimento_id", nullable = false, unique = true)

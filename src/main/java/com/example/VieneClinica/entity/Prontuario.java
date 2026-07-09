@@ -18,7 +18,7 @@ public class Prontuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotNull
     @ManyToOne(optional = false)
