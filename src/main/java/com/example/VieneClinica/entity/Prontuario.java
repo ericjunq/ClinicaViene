@@ -26,7 +26,7 @@ public class Prontuario {
     private Usuario usuario;
 
     @NotNull
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 

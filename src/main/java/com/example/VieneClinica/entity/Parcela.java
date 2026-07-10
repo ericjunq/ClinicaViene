@@ -23,7 +23,6 @@ public class Parcela {
     @Column(nullable = false)
     private BigDecimal valor;
 
-    @Column(nullable = false)
     private OffsetDateTime dataPagamento;
 
     @Column(nullable = false)

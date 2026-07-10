@@ -12,6 +12,7 @@ import java.time.OffsetDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "refresh_token")
 public class RefreshToken {
 
     @Id

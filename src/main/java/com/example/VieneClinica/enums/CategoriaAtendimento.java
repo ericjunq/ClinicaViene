@@ -7,5 +7,6 @@ public enum CategoriaAtendimento {
     CLINICA,
     IMPLANTE,
     CIRURGIA,
-    FACETA
+    FACETA,
+    PROTESE
 }

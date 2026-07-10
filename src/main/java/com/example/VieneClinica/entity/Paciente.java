@@ -41,7 +41,7 @@ public class Paciente {
     @Column(nullable = false)
     private String email;
 
-    @Size(max = 150)
+    @Column(nullable = false, length = 150)
     private String endereco;
 
     @CreationTimestamp

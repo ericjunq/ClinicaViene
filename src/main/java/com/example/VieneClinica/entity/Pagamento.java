@@ -15,7 +15,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+@Table(name = "pagamento")
 public class Pagamento {
 
     @Id
@@ -33,6 +34,12 @@ public class Pagamento {
 
     @Column(nullable = false)
     private BigDecimal valorFinal;
+
+    @Column(nullable = false)
+    private BigDecimal valorClinica;
+
+    @Column(nullable = false)
+    private BigDecimal valorProfissional;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
