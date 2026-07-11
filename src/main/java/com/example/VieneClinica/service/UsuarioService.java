@@ -7,7 +7,6 @@ import com.example.VieneClinica.entity.Usuario;
 import com.example.VieneClinica.enums.CargoEnum;
 import com.example.VieneClinica.enums.StatusAtividade;
 import com.example.VieneClinica.mapper.UsuarioMapper;
-import com.example.VieneClinica.repository.PacienteRepository;
 import com.example.VieneClinica.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
-    private final PacienteRepository pacienteRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UsuarioResponse criarUsuario(UsuarioDTO dto){

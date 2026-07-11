@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
 public class PacienteService {
 
     private final PacienteRepository pacienteRepository;
@@ -32,7 +31,7 @@ public class PacienteService {
         return pacienteMapper.toResponse(novoPaciente);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
     public void pacienteUpdate(Long id, PacienteUpdate dto){
 
         Paciente paciente = pacienteRepository.findById(id)

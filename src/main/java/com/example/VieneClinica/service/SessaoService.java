@@ -35,7 +35,10 @@ public class SessaoService {
                 .orElseThrow(()-> new EntityNotFoundException("Paciente não encontrado"));
 
         if (sessaoRepository.existsByDataSessao(dto.dataSessao())){
-            throw new DataIntegrityViolationException("Já existe uma consulta agendada para esse horário");
+            Sessao sessao = sessaoRepository.findByDataSessao(dto.dataSessao());
+            if (sessao.getStatus() != StatusSessao.CANCELADO){
+                throw new DataIntegrityViolationException("Já existe uma consulta agendada para esse horário");
+            }
         }
 
         Sessao sessao = sessaoMapper.toEntity(dto);
@@ -65,9 +68,11 @@ public class SessaoService {
                 .orElseThrow(()-> new EntityNotFoundException("Consulta não encontrada"));
 
         if (sessaoRepository.existsByDataSessao(novaDataSessao)){
-            throw new DataIntegrityViolationException("Já existe uma consulta agendada para esse horário");
+            Sessao sessaoExistente = sessaoRepository.findByDataSessao(novaDataSessao);
+            if (sessaoExistente.getStatus() != StatusSessao.CANCELADO){
+                throw new DataIntegrityViolationException("Já existe uma consulta agendada para esse horário");
+            }
         }
-
         sessao.setDataSessao(novaDataSessao);
     }
 }

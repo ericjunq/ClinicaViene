@@ -1,7 +1,5 @@
-package com.example.VieneClinica.security.auxiliar;
+package com.example.VieneClinica.utils;
 
-import com.example.VieneClinica.dto.procedimento.ProcedimentoDTO;
-import com.example.VieneClinica.dto.procedimento.ProcedimentoResponse;
 import com.example.VieneClinica.entity.Usuario;
 import com.example.VieneClinica.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;

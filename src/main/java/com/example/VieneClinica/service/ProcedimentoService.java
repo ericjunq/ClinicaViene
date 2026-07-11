@@ -11,7 +11,7 @@ import com.example.VieneClinica.mapper.ProcedimentoMapper;
 import com.example.VieneClinica.repository.PagamentoRepository;
 import com.example.VieneClinica.repository.ProcedimentoRepository;
 import com.example.VieneClinica.repository.ProntuarioRepository;
-import com.example.VieneClinica.security.auxiliar.BuscarUsuario;
+import com.example.VieneClinica.utils.BuscarUsuario;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,6 +59,7 @@ public class ProcedimentoService {
         procedimentoRepository.save(procedimento);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
     public void definirUrlDocumento(Long procedimentoId, UrlDocumento dto){
         Procedimento procedimento = procedimentoRepository.findById(procedimentoId)
                 .orElseThrow(() -> new EntityNotFoundException("Procedimento não encontrado"));

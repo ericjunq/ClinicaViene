@@ -56,18 +56,22 @@ public class Auxiliar {
 
     }
 
-    public static BigDecimal porcentagemFormaPagamento(BigDecimal valor, Pagamento pagamento){
+    public static BigDecimal porcentagemFormaPagamento(Pagamento pagamento){
         BigDecimal cem = new BigDecimal("100");
         BigDecimal valorFinal = BigDecimal.ZERO;
 
+        if (pagamento.getDesconto() != null){
+            pagamento.setValorTotal(pagamento.getValorTotal().subtract(pagamento.getDesconto()));
+        }
+
         if (pagamento.getFormaPagamento() == FormaPagamento.PIX){
             BigDecimal porc = new BigDecimal("3");
-            valorFinal = valor.multiply(porc).divide(cem, 2, RoundingMode.HALF_EVEN);
+            valorFinal = pagamento.getValorTotal().multiply(porc).divide(cem, 2, RoundingMode.HALF_EVEN);
         }
 
         if (pagamento.getFormaPagamento() == FormaPagamento.BOLETO){
             BigDecimal porc = new BigDecimal("5");
-            valorFinal = valor.multiply(porc).divide(cem, 2, RoundingMode.HALF_EVEN);
+            valorFinal = pagamento.getValorTotal().multiply(porc).divide(cem, 2, RoundingMode.HALF_EVEN);
         }
 
         return valorFinal;

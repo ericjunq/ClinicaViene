@@ -1,5 +1,6 @@
 package com.example.VieneClinica.entity;
 
+import com.example.VieneClinica.enums.StatusPagamento;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,10 +26,9 @@ public class Parcela {
 
     private OffsetDateTime dataPagamento;
 
-    @Column(nullable = false)
     private OffsetDateTime dataVencimento;
 
     @Column(nullable = false)
-    private boolean parcelaPaga;
+    private StatusPagamento statusPagamento;
 
 }
