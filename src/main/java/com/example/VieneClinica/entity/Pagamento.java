@@ -55,18 +55,4 @@ public class Pagamento {
     @OneToMany(mappedBy = "pagamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Parcela> parcelas = new ArrayList<>();
 
-    public void atualizarStatus(){
-        long total = parcelas.size();
-        long pagas = parcelas.stream()
-                .filter(Parcela::isParcelaPaga)
-                .count();
-
-        if (pagas == 0){
-            this.statusPagamento = StatusPagamento.PENDENTE;
-        } else if (pagas < total){
-            this.statusPagamento = StatusPagamento.PARCIAL;
-        } else {
-            this.statusPagamento = StatusPagamento.CONCLUIDO;
-        }
-    }
 }

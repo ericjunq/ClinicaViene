@@ -27,8 +27,10 @@ public class ParcelaService {
 
         Parcela parcela = new Parcela();
         parcela.setPagamento(pagamento);
+        // Calcular valor por parcela
         BigDecimal quantidadeParcelas = new BigDecimal(pagamento.getQuantidadeParcelas());
         parcela.setValor(pagamento.getValorFinal().divide(quantidadeParcelas, 2, RoundingMode.HALF_EVEN));
+
         parcela.setDataVencimento(vencimento);
         parcela.setStatusPagamento(StatusPagamento.PENDENTE);
 
@@ -56,4 +58,6 @@ public class ParcelaService {
             parcela.setStatusPagamento(StatusPagamento.ATRASADO);
         }
     }
+
+
 }

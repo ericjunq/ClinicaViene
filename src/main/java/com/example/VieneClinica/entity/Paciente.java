@@ -36,7 +36,6 @@ public class Paciente {
     @Column(nullable = false, length = 11)
     private String telefone;
 
-
     @Email
     @Column(nullable = false)
     private String email;

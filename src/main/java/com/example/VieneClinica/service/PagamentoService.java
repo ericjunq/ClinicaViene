@@ -2,16 +2,21 @@ package com.example.VieneClinica.service;
 
 import com.example.VieneClinica.dto.pagamento.PagamentoDTO;
 import com.example.VieneClinica.entity.Pagamento;
+import com.example.VieneClinica.entity.Parcela;
 import com.example.VieneClinica.entity.Procedimento;
 import com.example.VieneClinica.enums.StatusPagamento;
 import com.example.VieneClinica.mapper.PagamentoMapper;
 import com.example.VieneClinica.repository.PagamentoRepository;
+import com.example.VieneClinica.repository.ParcelaRepository;
 import com.example.VieneClinica.repository.ProcedimentoRepository;
 import com.example.VieneClinica.utils.Auxiliar;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +26,7 @@ public class PagamentoService {
     private final PagamentoRepository pagamentoRepository;
     private final PagamentoMapper pagamentoMapper;
     private final ProcedimentoRepository procedimentoRepository;
+    private final ParcelaRepository parcelaRepository;
 
 
     public Pagamento criarPagamento(Long idProcedimento, PagamentoDTO dto){
@@ -32,15 +38,17 @@ public class PagamentoService {
 
 
         pagamento.setProcedimento(procedimento);
+        procedimento.setPagamento(pagamento);
 
         // Valor total
-        pagamento.setValorTotal(Auxiliar.porcentagemFormaPagamento(dto.valor(), pagamento));
+        pagamento.setValorTotal(dto.valor());
+        pagamento.setValorTotal(Auxiliar.porcentagemFormaPagamento(pagamento));
 
         // Desconto e valor final
         if (dto.desconto() != null){
-            pagamento.setValorFinal(dto.valor().subtract(dto.desconto()));
+            pagamento.setValorFinal(pagamento.getValorTotal().subtract(dto.desconto()));
         } else {
-            pagamento.setValorFinal(dto.valor());
+            pagamento.setValorFinal(pagamento.getValorTotal());
         }
         // Valor final da clinica e do profissional
         pagamento.setValorProfissional(Auxiliar.valorProfissional(pagamento.getValorFinal(), procedimento));
@@ -55,5 +63,20 @@ public class PagamentoService {
         procedimentoRepository.save(procedimento);
 
         return pagamento;
+    }
+
+    public void atualizarStatusPagamento(Long pagamentoId){
+        Pagamento pagamento = pagamentoRepository.findById(pagamentoId)
+                .orElseThrow(()-> new EntityNotFoundException("Pagamento não encontrado"));
+
+        List<Parcela> parcelas = parcelaRepository.findAllByPagamento(pagamento)
+                .stream().filter(p -> p.getStatusPagamento() == StatusPagamento.CONCLUIDO)
+                .toList();
+
+        if (parcelas.size() < pagamento.getQuantidadeParcelas() && !parcelas.isEmpty()){
+            pagamento.setStatusPagamento(StatusPagamento.PARCIAL);
+        } else if (parcelas.size() == pagamento.getQuantidadeParcelas()){
+            pagamento.setStatusPagamento(StatusPagamento.CONCLUIDO);
+        }
     }
 }
