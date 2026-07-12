@@ -45,19 +45,19 @@ public class ProcedimentoService {
         return procedimentoMapper.toResponse(procedimento);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
-    public void definirPagamento(Long procedimentoId, Long pagamentoId){
-
-        Procedimento procedimento = procedimentoRepository.findById(procedimentoId)
-                .orElseThrow(()-> new EntityNotFoundException("Procedimento não encontrado"));
-
-        Pagamento pagamento = pagamentoRepository.findById(pagamentoId)
-                .orElseThrow(()-> new EntityNotFoundException("Pagamento não encontrado"));
-
-        procedimento.setPagamento(pagamento);
-
-        procedimentoRepository.save(procedimento);
-    }
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
+//    public void definirPagamento(Long procedimentoId, Long pagamentoId){
+//
+//        Procedimento procedimento = procedimentoRepository.findById(procedimentoId)
+//                .orElseThrow(()-> new EntityNotFoundException("Procedimento não encontrado"));
+//
+//        Pagamento pagamento = pagamentoRepository.findById(pagamentoId)
+//                .orElseThrow(()-> new EntityNotFoundException("Pagamento não encontrado"));
+//
+//        procedimento.setPagamento(pagamento);
+//
+//        procedimentoRepository.save(procedimento);
+//    }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEV')")
     public void definirUrlDocumento(Long procedimentoId, UrlDocumento dto){

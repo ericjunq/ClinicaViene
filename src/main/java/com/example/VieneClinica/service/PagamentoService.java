@@ -38,7 +38,7 @@ public class PagamentoService {
 
 
         pagamento.setProcedimento(procedimento);
-        procedimento.setPagamento(pagamento);
+
 
         // Valor total
         pagamento.setValorTotal(dto.valor());
@@ -56,8 +56,6 @@ public class PagamentoService {
 
         pagamento.setStatusPagamento(StatusPagamento.PENDENTE);
 
-        // Vincula pagamento ao procedimento
-        procedimento.setPagamento(pagamento);
 
         pagamentoRepository.save(pagamento);
         procedimentoRepository.save(procedimento);

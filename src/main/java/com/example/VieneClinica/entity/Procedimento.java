@@ -38,9 +38,6 @@ public class Procedimento {
     @Column(nullable = false)
     private String urlDocumento;
 
-    @OneToOne(mappedBy = "pagamento_id", cascade = CascadeType.PERSIST)
-    private Pagamento pagamento;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CategoriaAtendimento categoriaAtendimento;
