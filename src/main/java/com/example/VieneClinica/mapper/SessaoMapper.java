@@ -3,7 +3,9 @@ package com.example.VieneClinica.mapper;
 import com.example.VieneClinica.dto.sessao.SessaoDTO;
 import com.example.VieneClinica.dto.sessao.SessaoResponse;
 import com.example.VieneClinica.entity.Sessao;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SessaoMapper {
 
     public Sessao toEntity(SessaoDTO dto){

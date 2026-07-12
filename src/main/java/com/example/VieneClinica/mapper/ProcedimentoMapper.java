@@ -3,7 +3,9 @@ package com.example.VieneClinica.mapper;
 import com.example.VieneClinica.dto.procedimento.ProcedimentoDTO;
 import com.example.VieneClinica.dto.procedimento.ProcedimentoResponse;
 import com.example.VieneClinica.entity.Procedimento;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProcedimentoMapper {
 
     public Procedimento toEntity(ProcedimentoDTO dto){

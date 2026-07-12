@@ -3,8 +3,10 @@ package com.example.VieneClinica.mapper;
 import com.example.VieneClinica.dto.paciente.PacienteDTO;
 import com.example.VieneClinica.dto.paciente.PacienteResponse;
 import com.example.VieneClinica.entity.Paciente;
+import org.springframework.stereotype.Component;
 
-public class PacienteMapper{
+@Component
+public class PacienteMapper {
 
     public Paciente toEntity(PacienteDTO dto){
         Paciente paciente = new Paciente();
