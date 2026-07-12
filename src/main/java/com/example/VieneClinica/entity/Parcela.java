@@ -3,6 +3,7 @@ package com.example.VieneClinica.entity;
 import com.example.VieneClinica.enums.StatusPagamento;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -11,6 +12,8 @@ import java.time.OffsetDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@Table(name = "parcelas")
 public class Parcela {
 
     @Id
