@@ -51,8 +51,4 @@ public class Pagamento {
 
     @Column(nullable = false)
     private Integer quantidadeParcelas;
-
-    @OneToMany(mappedBy = "pagamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Parcela> parcelas = new ArrayList<>();
-
 }
