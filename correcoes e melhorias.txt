@@ -1,0 +1,10 @@
+cro é só pra quem é profissional -> Corrigir
+logica pra poder setar role do usuario
+
+-> Sugestão, cadastro sem CRO e cargo padrao de funcionario 
+com set de Role via banco manualmente e set de CRO pelo sistema 
+apos a conta criada
+
+
+-> Sugestão profissional: Criação de tabela Roles com campos adicionais (Tipo CRO)
+fica até mais facil pra caso tenha outras áreas futuras
