@@ -16,6 +16,10 @@ import java.time.OffsetDateTime;
 @Table(name = "person")
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @Column(nullable = false, length = 140)
     private String nomeCompleto;
 
