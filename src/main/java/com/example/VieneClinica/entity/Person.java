@@ -25,7 +25,7 @@ public class Person {
     @Column(nullable = false, length = 11)
     private String telefone;
 
-    @Column(nullable = false, length = 120)
+    @Column(nullable = false, length = 100)
     private String email;
 
     @Column(nullable = false, length = 160)

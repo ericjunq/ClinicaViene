@@ -1,7 +1,7 @@
 package com.example.VieneClinica.entity;
 
 
-import com.example.VieneClinica.entity.enums.StatusAtividade;
+import com.example.VieneClinica.enums.StatusAtividade;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

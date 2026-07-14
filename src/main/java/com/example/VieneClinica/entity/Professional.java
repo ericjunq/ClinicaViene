@@ -1,7 +1,7 @@
 package com.example.VieneClinica.entity;
 
-import com.example.VieneClinica.entity.enums.AreaAtendimento;
-import com.example.VieneClinica.entity.enums.StatusAtividade;
+import com.example.VieneClinica.enums.AreaAtendimento;
+import com.example.VieneClinica.enums.StatusAtividade;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "professional")
 public class Professional {
 
         @Id
