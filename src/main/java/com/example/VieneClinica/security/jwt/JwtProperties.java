@@ -16,4 +16,6 @@ public class JwtProperties {
 
     @Value("${jwt.refresh_token_expires}")
     private Long refreshExpiration;
+
+    //HAHA
 }
