@@ -19,6 +19,7 @@ public class UserService {
     private final PersonRepository personRepository;
     private final UserRepository userRepository;
     private final PersonMapper personMapper;
+    private final ProfessionalService professionalService;
 
     public User criarUser(PersonDTO dto, String senha){
         if (personRepository.existsByCpf(dto.cpf())){
@@ -28,8 +29,6 @@ public class UserService {
             throw new IllegalArgumentException("Data inválida");
         }
 
-
-
         Person person = personMapper.toEntity(dto);
         personRepository.save(person);
 
@@ -38,9 +37,8 @@ public class UserService {
         user.setPerson(person);
         user.setSenhaHash(senha);
         user.setStatus(StatusAtividade.ATIVO);
-
         userRepository.save(user);
 
-        return
+        return user;
     }
 }

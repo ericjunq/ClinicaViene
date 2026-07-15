@@ -31,6 +31,10 @@ public class User {
     @Column(nullable = false)
     private StatusAtividade status;
 
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     @CreationTimestamp
     private OffsetDateTime createdAt;
 
