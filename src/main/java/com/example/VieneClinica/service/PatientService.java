@@ -18,6 +18,7 @@ public class PatientService {
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
     private final PatientRepository patientRepository;
+    private final ProntuarioService prontuarioService;
 
     public Patient criarPacient(PersonDTO dto){
         if (personRepository.existsByCpf(dto.cpf())){
@@ -34,6 +35,9 @@ public class PatientService {
         patient.setPerson(person);
 
         patientRepository.save(patient);
+
+        // Criação de um prontuário pro paciente
+        prontuarioService.criarProntuario(patient);
 
         return patient;
     }

@@ -9,7 +9,7 @@ public class ProfessionalMapper {
 
     public Professional toEntity(ProfessionalDTO dto){
         Professional professional = new Professional();
-        professional.setCategoria(dto.categoria());
+        professional.setAreaAtendimento(dto.areaAtendimento());
         professional.setRegistroProfissional(dto.registroProfissional());
 
         return professional;

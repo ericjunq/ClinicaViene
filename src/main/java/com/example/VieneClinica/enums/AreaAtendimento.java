@@ -1,6 +1,6 @@
 package com.example.VieneClinica.enums;
 
-public enum Categoria {
+public enum AreaAtendimento {
     MEDICINA,
     ODONTOLOGIA,
     PSICOLOGIA

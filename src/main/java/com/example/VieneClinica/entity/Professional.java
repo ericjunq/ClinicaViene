@@ -1,6 +1,6 @@
 package com.example.VieneClinica.entity;
 
-import com.example.VieneClinica.enums.Categoria;
+import com.example.VieneClinica.enums.AreaAtendimento;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,7 @@ public class Professional {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Categoria categoria;
+    private AreaAtendimento areaAtendimento;
 
     @Column(nullable = false, unique = true)
     private String registroProfissional;
