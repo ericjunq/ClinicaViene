@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.OffsetDateTime;
 
@@ -32,18 +33,19 @@ public class Procedimento {
     @JoinColumn(name = "professional_id")
     private Professional professional;
 
-    @OneToOne
-    @JoinColumn(name = "pagamento_id")
-    private Pagamento pagamento;
+    private String urlDocumento;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CategoriaAtendimento categoriaAtendimento;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
+    @OneToOne
+    @JoinColumn(name = "pagamento_id")
+    private Pagamento pagamento;
 
     @CreationTimestamp
     private OffsetDateTime createdAt;
+
+    @UpdateTimestamp
+    private OffsetDateTime updatedAt;
 }

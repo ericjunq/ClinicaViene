@@ -18,6 +18,11 @@ public class ProntuarioService {
 
     // Criação de prontuário de um paciente -> Usei esse método direto no cadastro do paciente : Paciente criado, prontuário criado junto
     public void criarProntuario(Patient patient){
+
+        if (prontuarioRepository.existsByPatient(patient)){
+            throw new IllegalArgumentException("Esse paciente já possui um prontuário");
+        }
+
         Prontuario prontuario = new Prontuario();
         prontuario.setPatient(patient);
         prontuarioRepository.save(prontuario);
@@ -26,7 +31,7 @@ public class ProntuarioService {
     // Vincular profissional à um prontuário
     public void vincularProfissional(Long prontuarioId, Long professionalId){
         Prontuario prontuario = prontuarioRepository.findById(prontuarioId)
-                .orElseThrow(()-> new EntityNotFoundException("Prontuário inválido ou não encontrado"));
+                .orElseThrow(()-> new EntityNotFoundException("Prontuário não encontrado"));
 
         Professional professional = professionalRepository.findById(professionalId)
                 .orElseThrow(()-> new EntityNotFoundException("Profissional não encontrado"));

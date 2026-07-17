@@ -19,7 +19,6 @@ public class UserService {
     private final PersonRepository personRepository;
     private final UserRepository userRepository;
     private final PersonMapper personMapper;
-    private final ProfessionalService professionalService;
 
     public User criarUser(PersonDTO dto, String senha){
         if (personRepository.existsByCpf(dto.cpf())){
