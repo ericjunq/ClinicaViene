@@ -8,6 +8,7 @@ import com.example.VieneClinica.mapper.PersonMapper;
 import com.example.VieneClinica.repository.PersonRepository;
 import com.example.VieneClinica.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -19,6 +20,7 @@ public class UserService {
     private final PersonRepository personRepository;
     private final UserRepository userRepository;
     private final PersonMapper personMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public User criarUser(PersonDTO dto, String senha){
         if (personRepository.existsByCpf(dto.cpf())){
@@ -34,7 +36,7 @@ public class UserService {
         User user = new User();
 
         user.setPerson(person);
-        user.setSenhaHash(senha);
+        user.setSenhaHash(passwordEncoder.encode(senha));
         user.setStatus(StatusAtividade.ATIVO);
         userRepository.save(user);
 
