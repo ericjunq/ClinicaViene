@@ -15,8 +15,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class UserRegisterService {
@@ -39,7 +37,12 @@ public class UserRegisterService {
 
         // Cria entity na table relacionada ao cargo
         switch (tipoCadastro) {
-            case PROFESSIONAL -> professionalService.criarProfessional(user, professionalDTO);
+            case PROFESSIONAL -> {
+                if (professionalDTO == null){
+                    throw new IllegalArgumentException("Dados incorretos ou inválidos");
+                }
+                professionalService.criarProfessional(user, professionalDTO);
+            }
             case ADMIN -> adminService.criarAdmin(user);
         }
 
