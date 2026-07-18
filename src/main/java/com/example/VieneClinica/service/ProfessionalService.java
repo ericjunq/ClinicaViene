@@ -18,11 +18,13 @@ public class ProfessionalService {
     private final ProfessionalMapper professionalMapper;
     private final UserRepository userRepository;
 
-    public void criarProfessional(User user, ProfessionalDTO dto){
+    public Professional criarProfessional(User user, ProfessionalDTO dto){
 
         Professional professional = professionalMapper.toEntity(dto);
         professional.setUser(user);
         professionalRepository.save(professional);
+
+        return professional;
 
     }
 }
