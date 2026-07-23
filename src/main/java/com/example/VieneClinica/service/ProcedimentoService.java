@@ -11,6 +11,9 @@ import com.example.VieneClinica.repository.ProfessionalRepository;
 import com.example.VieneClinica.repository.ProntuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,15 +25,18 @@ public class ProcedimentoService {
     private final ProntuarioRepository prontuarioRepository;
     private final ProfessionalRepository professionalRepository;
 
-    // Alterar logica depois -> Professional ID vai vim direto do jwt
-    public ProcedimentoResponse criarProcedimento(Long prontuarioId, Long professionalId, ProcedimentoDTO dto){
+    public ProcedimentoResponse criarProcedimento( Long prontuarioId,  ProcedimentoDTO dto){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String cpf = authentication.getName();
+
+        Professional professional = professionalRepository.findByUserPersonCpf(cpf)
+                .orElseThrow(()-> new EntityNotFoundException("Profissional não encontrado"));
 
         Prontuario prontuario = prontuarioRepository.findById(prontuarioId)
                 .orElseThrow(()-> new EntityNotFoundException("Prontuário não encontrado"));
 
-        // Lógica vai ser trocada posteriormente -> Profissional vai ser o user do sistema, então vem via token
-        Professional professional = professionalRepository.findById(professionalId)
-                .orElseThrow(()-> new EntityNotFoundException("Profissional não encontrado"));
 
         Procedimento procedimento = procedimentoMapper.toEntity(dto);
         procedimento.setProntuario(prontuario);
